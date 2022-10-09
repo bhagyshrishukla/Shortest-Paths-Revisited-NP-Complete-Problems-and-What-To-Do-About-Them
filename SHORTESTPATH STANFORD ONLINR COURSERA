@@ -1,0 +1,30 @@
+Question 2
+Consider the following optimization to the Bellman-Ford algorithm.  Given a graph G=(V,E)G=(V,E) with real-valued edge lengths, we label the vertices V = \{1,2,3,\ldots,n\}V={1,2,3,…,n}.  The source vertex ss should be labeled "1", but the rest of the labeling can be arbitrary.  Call an edge (u,v) \in E(u,v)∈E forward if u \lt vu<v and backward if u \gt vu>v.  In every odd iteration of the outer loop (i.e., when i=1,3,5,...i=1,3,5,...), we visit the vertices in the order from 1 to nn.  In every even iteration of the outer loop (when i=2,4,6,...i=2,4,6,...), we visit the vertices in the order from nn to 1.  In every odd iteration, we update the value of A[i,v]A[i,v] using only the forward edges of the form (w,v)(w,v), using the most recent subproblem value for ww (that from the current iteration rather than the previous one).   That is, we compute A[i,v] = \min\{ A[i-1,v], \min_{(w,v)} A[i,w] + c_{wv} \}A[i,v]=min{A[i−1,v],min 
+(w,v)
+​
+ A[i,w]+c 
+wv
+​
+ }, where the inner minimum ranges only over forward edges sticking into vv (i.e., with w \lt vw<v).  Note that all relevant subproblems from the current round (A[i,w]A[i,w] for all w \lt vw<v with (w,v) \in E(w,v)∈E) are available for constant-time lookup.  In even iterations, we compute this same recurrence using only the backward edges (again, all relevant subproblems from the current round are available for constant-time lookup).  Which of the following is true about this modified Bellman-Ford algorithm?
+ 
+ 
+ 
+ 
+ ANS=
+It correctly computes shortest paths if and only if the input graph has no negative-cost cycle.
+
+2Question 3
+Consider a directed graph with real-valued edge lengths and no negative-cost cycles. Let ss be a source vertex.  Assume that each shortest path from ss to another vertex has at most kk edges. How fast can you solve the single-source shortest path problem? (As usual, nn and mm denote the number of vertices and edges, respectively.)  [Pick the strongest statement that is guaranteed to be true.]
+OKN ANSWER
+Question 4
+Consider a directed graph in which every edge has length 1. Suppose we run the Floyd-Warshall algorithm with the following modification: instead of using the recurrence A[i,j,k] = min{A[i,j,k-1], A[i,k,k-1] + A[k,j,k-1]}, we use the recurrence A[i,j,k] = A[i,j,k-1] + A[i,k,k-1] * A[k,j,k-1]. For the base case, set A[i,j,0] = 1 if (i,j) is an edge and 0 otherwise. What does this modified algorithm compute -- specifically, what is A[i,j,n] at the conclusion of the algorithm?
+
+1 point
+
+ANS The length of a longest path from ii to jj.
+
+Question 5
+Suppose we run the Floyd-Warshall algorithm on a directed graph G=(V,E)G=(V,E) in which every edge's length is either -1, 0, or 1. Suppose further that GG is strongly connected, with at least one uu-vv path for every pair u,vu,v of vertices. The graph GG may or may not have a negative-cost cycle. How large can the final entries A[i,j,n] be, in absolute value? Choose the smallest number that is guaranteed to be a valid upper bound. (As usual, nn denotes |V|∣V∣.) [WARNING: for this question, make sure you refer to the implementation of the Floyd-Warshall algorithm given in lecture, rather than to some alternative source.]
+
+
+2RAISE N
